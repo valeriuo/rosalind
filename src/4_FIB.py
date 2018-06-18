@@ -11,7 +11,7 @@ def fib(n, k):
         return k*fib(n-2, k) + fib(n-1, k) 
 
 def main():
-    with open(sys.argv[1], 'r') as myfile:
+    with open('../data/rosalind_fib.txt', 'r') as myfile:
         source=myfile.read().replace('\n', '')
     #source = "5 3"
     list = source.split()

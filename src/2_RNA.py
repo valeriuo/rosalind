@@ -12,7 +12,7 @@ def rna(input):
     return output 
 
 def main():
-    with open(sys.argv[1], 'r') as myfile:
+    with open('../data/rosalind_rna.txt', 'r') as myfile:
         source=myfile.read().replace('\n', '')
     print(rna(source))
 
