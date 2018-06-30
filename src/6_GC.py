@@ -1,4 +1,4 @@
-# Mendel's First Law
+# GC proportion
 import sys
 
 def gc(input):
