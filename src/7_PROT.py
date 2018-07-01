@@ -10,7 +10,7 @@ def main():
     with open('../data/rosalind_prot.txt', 'r') as myfile:
         rna=myfile.read().replace('\n', '')
     #codons = [rna[3*i:3*(i+1)] for i in range(len(rna)//3)]
-    amino_acids = [amino_acid(rna[3*i:3*(i+1)]) for i in range(len(rna)//3)]
+    amino_acids = [amino_acid(rna[3*i:3*(i+1)]) for i in range(len(rna)//3) if amino_acid(rna[3*i:3*(i+1)]) is not None]
     #print(codons)
     #print(amino_acids)
     protein = ''.join(amino_acids[:amino_acids.index('Stop')])
