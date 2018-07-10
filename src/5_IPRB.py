@@ -9,8 +9,8 @@ def iprb(k, m, n):
 def main():
     with open('../data/rosalind_iprb.txt', 'r') as myfile:
         source=myfile.read().replace('\n', '')
-    list = source.split()
-    print(iprb(int(list[0]), int(list[1]), int(list[2])))
+    list = [int(x) for x in source.split()]
+    print(iprb(list[0], list[1], list[2]))
     #print(iprb(0, 2, 0))
     
 if __name__ == '__main__':
