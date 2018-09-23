@@ -18,9 +18,7 @@ def main():
     n = int(sys.argv[1]) if len(sys.argv) > 1 else 0
     
     if n > 0:
-        perms = []
-        for p in heap(n, list(range(n+1))[1:]):
-            perms.append(list(p)) 
+        perms = [list(p) for p in heap(n, list(range(n+1))[1:])]
         print(len(perms))
         for p in perms:
             print(*p, sep=' ')
