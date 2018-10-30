@@ -3,34 +3,33 @@
 #8 2 1 6 5 7 4 3 9
 import sys
 
+# Compute longest monotonic sequence
 def lms(input, up):
     n = len(input)
-    l = []
-    ls = []
-    d = {}
-    v = -1
+    li = [] # array of maximum lengths. l[i] is the length of the sequence ending in input[i]
+    d = {}  # d[i] is the index that came before i in the longest sequence containing input[i]
+
     for i in range(n):
         m = 0
+        v = -1
         for j in range(i):
-            if (up and input[i] > input[j] or not up and input[i] < input[j]) and l[j] > m:
-                m = l[j]
-                v = j
-        l.append(m+1)
+            if (up and input[i] > input[j] or not up and input[i] < input[j]) and li[j] > m:
+                m = li[j] # compute the maximum
+                v = j     # save the index of the maximum
+        li.append(m+1)
         d[i] = v
 
-    m = l.index(max(l))
-    ls.append(m)
-    for i in range(max(l)-1):
-        ls.append(d[m])
+    m = li.index(max(li))
+    ls = [m] # the longest sequence
+    for i in range(max(li)-1):
+        ls = [d[m]] + ls # go back, starting from the maximum
         m = d[m]
-        
-    ls.reverse()
 
     return ls
         
 
 def main():
-    with open('../data/rosalind_lgis_test.txt', 'r') as fp:
+    with open('../data/rosalind_lgis.txt', 'r') as fp:
         n = int(fp.readline())
         perm = [int(x) for x in fp.readline().split()]
         
