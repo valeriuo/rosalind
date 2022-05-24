@@ -10,15 +10,22 @@ def dna2aa(input):
 def peptides(input):
     output = set()
     amino_acids = [dna2aa(input[3*i:3*(i+1)]) for i in range(len(input)//3) if dna2aa(input[3*i:3*(i+1)]) is not None]
+    #print(input)
+    #print(amino_acids)
 
     for i in range(len(amino_acids)):
-        if amino_acids[i] is 'M' and 'Stop' in amino_acids[i+1:]:
+        if amino_acids[i] == 'M' and 'Stop' in amino_acids[i+1:]:
             output.add(''.join(amino_acids[i:amino_acids.index('Stop',i+1)]))
             
     return output
 
 def main():
-    with open('../data/rosalind_orf.txt', 'r') as fp:
+    if len(sys.argv) < 2:
+        data_file = '../data/rosalind_orf.txt'
+    else:
+        data_file = sys.argv[1]
+
+    with open(data_file, 'r') as fp:
         fseq = ''
         for line in fp:
             if line[0] != '>':
