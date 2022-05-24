@@ -16,19 +16,24 @@ def splice(input, intron):
 
 
 def main():
-    with open('../data/rosalind_splc.txt', 'r') as fp:
+    if len(sys.argv) < 2:
+        data_file = '../data/rosalind_splc.txt'
+    else:
+        data_file = sys.argv[1]
+
+    with open(data_file, 'r') as fp:
         seq = ''
         read_seq = 0
         intron = ''
         for line in fp:
             if line[0] != '>':
-                if read_seq is 0:
+                if read_seq == 0:
                     seq += line.replace('\n', '')
                 else:
                     intron += line.replace('\n', '')
             else:
                 if len(seq) > 0:
-                    if read_seq is 0:
+                    if read_seq == 0:
                         read_seq = 1
                     # process sequence
                     if len(intron) > 0:
